@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block title %}{{ category }} | Web Noticias{% endblock %}{% block content %}
+<div class="section-kicker"><span>SECCIÓN</span><span>WEB NOTICIAS</span></div><h1 class="page-title">{{ category }}</h1>
+{% if articles %}<div class="news-grid section-grid">{% for n in articles %}<article class="news-card">{% if n.image %}<a href="{{ url_for('article', article_id=n.id) }}"><img src="{{ media_url(n.image) }}" alt=""></a>{% else %}<div class="card-placeholder"></div>{% endif %}<div class="story-category">{{ n.category }}</div><h3><a href="{{ url_for('article', article_id=n.id) }}">{{ n.title }}</a></h3><p>{{ n.summary }}</p><small>{{ n.created_at[:10] }}</small></article>{% endfor %}</div>{% else %}<p class="empty-state">Todavía no hay noticias publicadas en esta sección.</p>{% endif %}
+{% endblock %}

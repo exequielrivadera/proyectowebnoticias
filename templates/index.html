@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+{% if breaking %}<div class="breaking"><strong>ÚLTIMO MOMENTO</strong><div class="breaking-track">{% for n in breaking %}<a href="{{ url_for('article', article_id=n.id) }}">{{ n.title }}</a>{% endfor %}</div></div>{% endif %}
+{% for ad in top_ads %}<a class="ad-slot ad-top" href="{{ ad.target_url or '#' }}" target="_blank" rel="noopener"><span>PUBLICIDAD</span>{% if ad.image %}<img src="{{ url_for('static', filename=ad.image) }}" alt="{{ ad.name }}">{% else %}<b>{{ ad.name }}</b>{% endif %}</a>{% endfor %}
+<div class="section-kicker"><span>LA PORTADA</span><span>{{ today.strftime('%d · %m · %Y') }}</span></div>
+{% if featured %}
+<section class="lead-grid">
+  <article class="lead-story">
+    <a href="{{ url_for('article', article_id=featured.id) }}">{% if featured.image %}<img class="lead-image" src="{{ media_url(featured.image) }}" alt="">{% else %}<div class="image-placeholder">WEB NOTICIAS</div>{% endif %}</a>
+    <div class="story-category">{{ featured.category }}</div><h1><a href="{{ url_for('article', article_id=featured.id) }}">{{ featured.title }}</a></h1>
+    <p class="lead-summary">{{ featured.summary }}</p><div class="byline">{{ featured.author }} · {{ featured.created_at[:10] }}</div>
+  </article>
+  <aside class="lead-aside"><h3>LO MÁS RECIENTE</h3>{% for n in latest[:5] %}<article class="compact-story"><span>{{ n.category }}</span><h2><a href="{{ url_for('article', article_id=n.id) }}">{{ n.title }}</a></h2><small>{{ n.created_at[:10] }}</small></article>{% endfor %}
+  {% for ad in side_ads %}<a class="ad-slot ad-side" href="{{ ad.target_url or '#' }}" target="_blank" rel="noopener"><span>PUBLICIDAD</span>{% if ad.image %}<img src="{{ url_for('static', filename=ad.image) }}" alt="{{ ad.name }}">{% else %}<b>{{ ad.name }}</b>{% endif %}</a>{% endfor %}</aside>
+</section>
+{% else %}<div class="empty-lead"><span>WEB NOTICIAS</span><h1>Las noticias que importan, en un solo lugar.</h1><p>Cuando publiques la primera noticia destacada, aparecerá aquí.</p><a class="text-link" href="{{ url_for('admin_login') }}">Ingresar al panel editorial →</a></div>{% endif %}
+<section class="latest-section"><div class="section-heading"><h2>Noticias del día</h2><a href="{{ url_for('live') }}">Seguir la actualidad →</a></div>
+<div class="news-grid">{% for n in latest %}{% if not featured or n.id != featured.id %}<article class="news-card">{% if n.image %}<a href="{{ url_for('article', article_id=n.id) }}"><img src="{{ media_url(n.image) }}" alt=""></a>{% else %}<div class="card-placeholder"></div>{% endif %}<div class="story-category">{{ n.category }}</div><h3><a href="{{ url_for('article', article_id=n.id) }}">{{ n.title }}</a></h3><p>{{ n.summary }}</p><small>{{ n.created_at[:10] }}</small></article>{% endif %}{% endfor %}</div></section>
+{% for ad in inline_ads %}<a class="ad-slot ad-top" href="{{ ad.target_url or '#' }}" target="_blank" rel="noopener"><span>PUBLICIDAD</span>{% if ad.image %}<img src="{{ url_for('static', filename=ad.image) }}" alt="{{ ad.name }}">{% else %}<b>{{ ad.name }}</b>{% endif %}</a>{% endfor %}
+{% for cat,items in sections.items() %}{% if items %}<section class="category-section"><div class="section-heading"><h2>{{ cat }}</h2><a href="{{ url_for('section', category=cat) }}">Ver todas →</a></div><div class="category-row">{% for n in items[:3] %}<article><span class="story-category">{{ n.category }}</span><h3><a href="{{ url_for('article', article_id=n.id) }}">{{ n.title }}</a></h3><p>{{ n.summary }}</p></article>{% endfor %}</div></section>{% endif %}{% endfor %}
+<section class="ephemeris"><div><span class="eyebrow">UN DÍA COMO HOY EN ARGENTINA</span><h2>Efemérides</h2><p>{{ today.strftime('%d/%m/%Y') }}</p></div><div class="ephemeris-items">{% if ephemerides %}{% for e in ephemerides %}<article><h3>{{ e.title }}</h3><p>{{ e.description }}</p></article>{% endfor %}{% else %}<p>No hay efemérides cargadas para esta fecha.</p>{% endif %}</div></section>
+{% endblock %}

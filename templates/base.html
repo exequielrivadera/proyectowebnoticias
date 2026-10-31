@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Actualidad, análisis y noticias de Argentina.">
+  <title>{% block title %}Web Noticias{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header class="masthead">
+  <div class="topline"><span>INFORMACIÓN · ANÁLISIS · ACTUALIDAD</span><span>{{ today.strftime('%d/%m/%Y') if today is defined else '' }}</span></div>
+  <a class="brand" href="{{ url_for('index') }}">Web <em>Noticias</em></a>
+  <div class="brand-sub">LA ACTUALIDAD, EN CONTEXTO</div>
+  <nav class="main-nav">
+    <a href="{{ url_for('index') }}">Portada</a>
+    {% for cat in categories %}<a href="{{ url_for('section', category=cat) }}">{{ cat }}</a>{% endfor %}
+    <a href="{{ url_for('live') }}" class="live-link"><i></i> En vivo</a>
+  </nav>
+</header>
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}<div class="flash-wrap">{% for kind,msg in messages %}<div class="flash {{ kind }}">{{ msg }}</div>{% endfor %}</div>{% endif %}
+{% endwith %}
+<main class="site-main">{% block content %}{% endblock %}</main>
+<footer class="site-footer">
+  <div><a class="footer-brand" href="{{ url_for('index') }}">Web <em>Noticias</em></a><p>Información para comprender lo que pasa.</p></div>
+  <div class="footer-links"><a href="{{ url_for('contact') }}">Contacto y publicidad</a><a href="{{ url_for('admin_login') }}">Administración</a></div>
+  <div class="footer-signature"><span>Diseñado por</span><a href="https://wa.me/543804507584" target="_blank" rel="noopener noreferrer" aria-label="Pulso Digital"><img src="{{ url_for('static', filename='img/pulso-digital-blanco.png') }}" alt="Pulso Digital"></a></div>
+  <small>© {{ year }} Web Noticias. Todos los derechos reservados.</small>
+</footer>
+<a class="whatsapp-float" href="{{ whatsapp_link }}" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp"><span>¿Querés comunicarte con el medio?</span><b><img src="https://cdn.simpleicons.org/whatsapp/FFFFFF" alt="" width="21" height="21" loading="lazy"></b></a>
+<script src="{{ url_for('static', filename='js/site.js') }}"></script>
+</body></html>

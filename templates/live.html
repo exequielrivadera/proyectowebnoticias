@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block title %}En vivo | Web Noticias{% endblock %}{% block content %}
+<div class="section-kicker"><span><i class="live-dot"></i> ACTUALIZACIÓN PERMANENTE</span><span>WEB NOTICIAS</span></div><h1 class="page-title">En vivo</h1><p class="page-intro">Seguimiento de noticias marcadas como último momento por la redacción.</p>
+<div class="live-list">{% for n in articles %}<article><time>{{ n.created_at }}</time><div><span class="story-category">{{ n.category }}</span><h2><a href="{{ url_for('article', article_id=n.id) }}">{{ n.title }}</a></h2><p>{{ n.summary }}</p></div></article>{% else %}<p class="empty-state">No hay noticias de último momento por ahora.</p>{% endfor %}</div>
+{% endblock %}
