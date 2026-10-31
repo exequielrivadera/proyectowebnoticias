@@ -60,3 +60,23 @@ Las 18 noticias iniciales tienen fotografías editoriales relacionadas con sus t
 
 ### Firma de desarrollo
 El pie de página incluye la firma visual de Pulso Digital. Las imágenes editoriales remotas cuentan con un reemplazo visual cuando el servidor de origen no responde.
+
+
+## Publicar en Render
+
+Este proyecto incluye `render.yaml` para desplegarlo como aplicación Flask.
+
+1. Subí los archivos de esta carpeta al repositorio de GitHub.
+2. En Render, elegí **New > Blueprint** y conectá el repositorio.
+3. Render detectará `render.yaml` y preparará el servicio web.
+4. Cuando lo solicite, definí `ADMIN_PASSWORD` con una contraseña fuerte y privada.
+5. Esperá a que termine el despliegue y abrí la URL `onrender.com` asignada.
+
+También podés crear un **Web Service** manualmente:
+- Build Command: `pip install -r requirements.txt`
+- Start Command: `gunicorn app:app --workers 2 --threads 4 --timeout 120`
+- Variables: `SECRET_KEY` (aleatoria), `ADMIN_USERNAME`, `ADMIN_PASSWORD` y `WHATSAPP_NUMBER`.
+
+**Importante sobre el plan gratuito:** el sistema de archivos de Render es efímero. La base SQLite y las imágenes subidas desde el panel pueden perderse al reiniciar o volver a desplegar el servicio. El plan gratuito sirve para presentar el proyecto en un portfolio; para administrar noticias de forma permanente, migrá la base a PostgreSQL y configurá almacenamiento persistente para imágenes. El servicio también puede tardar un poco en responder después de un período sin visitas.
+
+**Seguridad:** no publiques contraseñas ni archivos `.env` en GitHub. Configurá `ADMIN_PASSWORD` como variable secreta en Render.

@@ -15,6 +15,11 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "cambiar-esta-clave-en-produccion")
+app.config.update(
+    SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SAMESITE="Lax",
+    SESSION_COOKIE_SECURE=os.environ.get("RENDER", "").lower() == "true",
+)
 app.config["MAX_CONTENT_LENGTH"] = 8 * 1024 * 1024
 app.config["UPLOAD_FOLDER"] = UPLOAD_DIR
 WHATSAPP_NUMBER = os.environ.get("WHATSAPP_NUMBER", "543804507584")
@@ -63,8 +68,10 @@ def init_db():
         if "source_url" not in article_columns:
             con.execute("ALTER TABLE articles ADD COLUMN source_url TEXT NOT NULL DEFAULT ''")
         if not con.execute("SELECT id FROM users LIMIT 1").fetchone():
+            initial_username = os.environ.get("ADMIN_USERNAME", "admin")
+            initial_password = os.environ.get("ADMIN_PASSWORD", "Cambiar123!")
             con.execute("INSERT INTO users(username,password_hash) VALUES(?,?)",
-                        ("admin", generate_password_hash("Cambiar123!")))
+                        (initial_username, generate_password_hash(initial_password)))
         if not con.execute("SELECT id FROM ephemerides LIMIT 1").fetchone():
             seeds = [
                 (1, 1, "Año Nuevo", "Comienza un nuevo año calendario."),
@@ -368,4 +375,4 @@ def change_password():
 init_db()
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")), debug=False)
