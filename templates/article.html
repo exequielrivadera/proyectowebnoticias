@@ -1,9 +1,0 @@
-{% extends "base.html" %}{% block title %}{{ item.title }} | Web Noticias{% endblock %}{% block content %}
-<article class="article-page"><div class="story-category">{{ item.category }}</div><h1>{{ item.title }}</h1><p class="article-deck">{{ item.summary }}</p><div class="byline">Por {{ item.author }} · {{ item.created_at[:10] }}</div>
-{% if item.image %}<img class="article-hero" src="{{ media_url(item.image) }}" alt="">{% endif %}
-<div class="article-body">{{ item.body | e | replace('\n','<br>') | safe }}</div>
-{% if item.source_url %}<p class="source-note">Fuente de referencia: <a href="{{ item.source_url }}" target="_blank" rel="noopener noreferrer">consultar publicación original ↗</a></p>{% endif %}
-{% for ad in inline_ads %}<a class="ad-slot ad-top" href="{{ ad.target_url or '#' }}" target="_blank" rel="noopener"><span>PUBLICIDAD</span>{% if ad.image %}<img src="{{ url_for('static', filename=ad.image) }}" alt="{{ ad.name }}">{% else %}<b>{{ ad.name }}</b>{% endif %}</a>{% endfor %}
-</article>
-{% if related %}<section class="latest-section"><div class="section-heading"><h2>También puede interesarte</h2></div><div class="category-row">{% for n in related %}<article><span class="story-category">{{ n.category }}</span><h3><a href="{{ url_for('article', article_id=n.id) }}">{{ n.title }}</a></h3><p>{{ n.summary }}</p></article>{% endfor %}</div></section>{% endif %}
-{% endblock %}

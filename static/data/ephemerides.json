@@ -1,0 +1,116 @@
+[
+  {
+    "month": 1,
+    "day": 1,
+    "title": "Año Nuevo",
+    "description": "Comienza un nuevo año calendario."
+  },
+  {
+    "month": 2,
+    "day": 14,
+    "title": "Día de la Energía",
+    "description": "Jornada vinculada a la reflexión sobre el uso responsable de la energía."
+  },
+  {
+    "month": 3,
+    "day": 24,
+    "title": "Día Nacional de la Memoria por la Verdad y la Justicia",
+    "description": "En memoria de las víctimas de la última dictadura cívico-militar."
+  },
+  {
+    "month": 4,
+    "day": 2,
+    "title": "Día del Veterano y de los Caídos en la Guerra de Malvinas",
+    "description": "Homenaje a quienes participaron en la Guerra de Malvinas."
+  },
+  {
+    "month": 5,
+    "day": 1,
+    "title": "Día Internacional de los Trabajadores",
+    "description": "Jornada de reconocimiento a los derechos y las luchas de las personas trabajadoras."
+  },
+  {
+    "month": 5,
+    "day": 25,
+    "title": "Revolución de Mayo",
+    "description": "Se recuerda la conformación del primer gobierno patrio en 1810."
+  },
+  {
+    "month": 6,
+    "day": 17,
+    "title": "Paso a la Inmortalidad del General Martín Miguel de Güemes",
+    "description": "Homenaje al líder de la guerra gaucha."
+  },
+  {
+    "month": 6,
+    "day": 20,
+    "title": "Día de la Bandera",
+    "description": "Se conmemora el fallecimiento de Manuel Belgrano, creador de la bandera argentina."
+  },
+  {
+    "month": 7,
+    "day": 9,
+    "title": "Día de la Independencia",
+    "description": "Se recuerda la declaración de la independencia en 1816."
+  },
+  {
+    "month": 8,
+    "day": 17,
+    "title": "Paso a la Inmortalidad del General José de San Martín",
+    "description": "Homenaje al Libertador de América."
+  },
+  {
+    "month": 9,
+    "day": 11,
+    "title": "Día del Maestro",
+    "description": "En homenaje a Domingo Faustino Sarmiento."
+  },
+  {
+    "month": 10,
+    "day": 12,
+    "title": "Día del Respeto a la Diversidad Cultural",
+    "description": "Jornada de reflexión sobre la diversidad cultural."
+  },
+  {
+    "month": 10,
+    "day": 31,
+    "title": "Día Mundial de las Ciudades",
+    "description": "Jornada establecida por las Naciones Unidas para promover ciudades inclusivas, seguras, resilientes y sostenibles. En 2026, el eje es la regeneración urbana y el acceso a una vivienda adecuada."
+  },
+  {
+    "month": 10,
+    "day": 31,
+    "title": "Día Universal del Ahorro",
+    "description": "Se recuerda la fecha instituida al finalizar el Congreso Internacional del Ahorro, celebrado en Milán en octubre de 1924. La jornada promueve la planificación y el uso responsable de los recursos."
+  },
+  {
+    "month": 10,
+    "day": 31,
+    "title": "Fallece Lola Membrives (1969)",
+    "description": "El 31 de octubre de 1969 murió Lola Membrives, actriz argentina de destacada trayectoria en el teatro, con reconocimiento tanto en Argentina como en España."
+  },
+  {
+    "month": 10,
+    "day": 31,
+    "title": "Nace José María Contursi (1911)",
+    "description": "El 31 de octubre de 1911 nació el letrista argentino José María Contursi, autor de tangos como “Gricel” y “Cristal”, referentes del repertorio de la canción porteña."
+  },
+  {
+    "month": 11,
+    "day": 20,
+    "title": "Día de la Soberanía Nacional",
+    "description": "Se recuerda la batalla de la Vuelta de Obligado."
+  },
+  {
+    "month": 12,
+    "day": 10,
+    "title": "Día de la Restauración de la Democracia",
+    "description": "Se recuerda la asunción presidencial de Raúl Alfonsín en 1983."
+  },
+  {
+    "month": 12,
+    "day": 24,
+    "title": "Nochebuena",
+    "description": "Víspera de Navidad."
+  }
+]
